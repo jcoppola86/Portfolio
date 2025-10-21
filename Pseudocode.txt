@@ -1,0 +1,32 @@
+BEGIN PROGRAM
+
+DISPLAY "Airgead Banking App"
+PROMPT user for Initial Investment Amount
+PROMPT user for Monthly Deposit
+PROMPT user for Annual Interest Rate
+PROMPT user for Number of Years
+
+DISPLAY user input values
+WAIT for key to continue
+
+CALL calculateBalanceWithoutMonthlyDeposit(initialInvestment, interestRate, numberOfYears)
+    LOOP for each year from 1 to numberOfYears
+        COMPOUND balance monthly
+        TRACK interest earned for year
+        CALL printDetails(year, balance, interestEarned)
+    END LOOP
+RETURN final balance
+
+CALL balanceWithMonthlyDeposit(initialInvestment, monthlyDeposit, interestRate, numberOfYears)
+    LOOP for each year from 1 to numberOfYears
+        FOR each month in 12
+            CALCULATE interest on balance before deposit
+            ADD interest to balance
+            TRACK interest earned for year
+            ADD monthly deposit AFTER interest
+        END FOR
+        CALL printDetails(year, balance, interestEarned)
+    END LOOP
+RETURN final balance
+
+END PROGRAM
